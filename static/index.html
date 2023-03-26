@@ -1,0 +1,76 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+
+<h2>Veritas Inc. SMTP Server Credentials</h2>
+server: smtp.sendgrid.net:587<br>
+username: <span class="smtp_username"></span><br>
+password: <span class="smtp_pass"></span><br>
+
+<h1>Company Directory</h1>
+
+<ul>
+    <li>
+        (CEO) Bob Dole
+    </li>
+    <ul>
+        <li>
+            bobdole@<span class='mailgun_domain'></span>
+        </li>
+    </ul>
+</ul>
+
+    
+<ul>
+    <li>
+        (CFO) Ted Jones
+    </li>
+    <ul>
+        <li>
+            tedjones@<span class='mailgun_domain'></span>
+        </li>
+    </ul>
+</ul>
+  
+<ul>  
+    <li>
+        (IT Director) Scotty LaForge
+    </li>
+    <ul>
+        <li>
+            scotty@<span class='mailgun_domain'></span>
+        </li>
+        <li>
+            +1 (909) 790-2903
+        </li>
+    </ul>
+</ul>
+    
+<ul>  
+    <li>
+        (IT Guy) Kylo Solo
+    </li>
+    <ul>
+        <li>
+            kylo@<span class='mailgun_domain'></span>
+        </li>
+        <li>
+            <span class='kylo_phone'></span>
+        </li>
+    </ul>
+</ul>
+
+<script>
+jQuery.ajax({
+    type: "POST",
+    url: "/get_config",
+    data: {},
+    success: function (data) {
+        jQuery('.mailgun_domain').html(data.mailgun_domain);
+        jQuery('.kylo_phone').html(data.kylo_phone);
+        jQuery('.smtp_username').html(data.smtp_username);
+        jQuery('.smtp_pass').html(data.smtp_pass);
+    },
+    error: function (e) {
+        console.log(e);
+    }
+});
+</script>
